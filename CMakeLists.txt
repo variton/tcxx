@@ -14,15 +14,13 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(Dependencies)
 
-SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 SET(TRC ${CMAKE_CURRENT_SOURCE_DIR}/rc)
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "include/*.h")
 
 enable_testing()
-#source code
-add_subdirectory(src)
+#tests
 add_subdirectory(test)
 #tool for coverage
 include(Coverage)
