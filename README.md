@@ -109,14 +109,6 @@ reports/valgrind-report.html
 
 ---
 
-### Quality Report
-
-```text
-reports/deinterlacer-quality-report.log
-```
-
----
-
 ## Project Structure
 
 ```text
