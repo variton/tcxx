@@ -5,14 +5,13 @@ PROJECT_NUMBER         = "0.0.1"
 #OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
 
 # Where your sources live
-INPUT                  = "/home/cxx-core/src" \
-                         "/home/cxx-core/include" \
+INPUT                  = "/home/cxx-core/include" \
                          "/home/cxx-core/README.md"
 
 RECURSIVE              = YES
 
 # Common C/C++ settings
-FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.cc *.cxx *.md
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.cc *.cxx *.md *.tpp
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
