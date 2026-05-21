@@ -45,7 +45,7 @@ Run the following command from the project root directory:
 
 ```bash
 docker run \
-    --name=tcxx \
+    --name=ctcxx \
     --hostname=cypher \
     -v $PWD:/home/cxx-core \
     --net=host \
