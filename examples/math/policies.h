@@ -37,17 +37,17 @@ struct OpenIntervalPolicy {
         const BoundType& upper,
         const BoundType& value) noexcept {
         if (value <= lower) {
-            return tl::unexpected(IntervalErrorInfo{
-                IntervalError::OutOfScopeOnLowerBound,
-                "value is outside the open interval at the lower bound"
-            });
+            return err::unexpected(
+                   IntervalError::OutOfScopeOnLowerBound,
+                   "value is outside the open interval at the lower bound"
+            );
         }
 
         if (value >= upper) {
-            return tl::unexpected(IntervalErrorInfo{
-                IntervalError::OutOfScopeOnUpperBound,
-                "value is outside the open interval at the upper bound"
-            });
+            return err::unexpected(
+                  IntervalError::OutOfScopeOnUpperBound,
+                  "value is outside the open interval at the upper bound"
+            );
         }
 
         return {};
@@ -61,17 +61,17 @@ struct HalfClosedLowerBoundPolicy {
         const BoundType& upper,
         const BoundType& value) noexcept {
         if (value < lower) {
-            return tl::unexpected(IntervalErrorInfo{
-                IntervalError::OutOfScopeOnLowerBound,
-                "value is below the lower bound of the half-closed-lower interval"
-            });
+            return err::unexpected(
+                  IntervalError::OutOfScopeOnLowerBound,
+                  "value is below the lower bound of the half-closed-lower interval"
+            );
         }
 
         if (value >= upper) {
-            return tl::unexpected(IntervalErrorInfo{
-                IntervalError::OutOfScopeOnUpperBound,
-                "value is outside the upper bound of the half-closed-lower interval"
-            });
+            return err::unexpected(
+                  IntervalError::OutOfScopeOnUpperBound,
+                  "value is outside the upper bound of the half-closed-lower interval"
+            );
         }
 
         return {};
@@ -85,17 +85,17 @@ struct HalfClosedUpperBoundPolicy {
         const BoundType& upper,
         const BoundType& value) noexcept {
         if (value <= lower) {
-            return tl::unexpected(IntervalErrorInfo{
+            return err::unexpected(
                 IntervalError::OutOfScopeOnLowerBound,
                 "value is outside the lower bound of the half-closed-upper interval"
-            });
+            );
         }
 
         if (value > upper) {
-            return tl::unexpected(IntervalErrorInfo{
+            return err::unexpected(
                 IntervalError::OutOfScopeOnUpperBound,
                 "value is above the upper bound of the half-closed-upper interval"
-            });
+            );
         }
 
         return {};
