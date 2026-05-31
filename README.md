@@ -22,8 +22,12 @@
 | Dependency | Version |
 |---|---|
 | GCC | 15+ |
-| CMake | 3.20+ |
+| CMake | 4.2.3+ |
+| Ninja | Latest |
 | Docker | Latest |
+
+The local tooling also expects common development utilities such as
+`ctest`, `valgrind`, `clang-format`, `lcov`, and Python 3.
 
 ---
 
@@ -69,9 +73,24 @@ The local CI pipeline performs the following tasks:
 
 - Configure and build the project
 - Execute unit tests
+- Generate an HTML unit test report
 - Generate coverage reports
 - Generate Doxygen documentation
 - Execute Valgrind analysis
+- Run `clang-format`
+
+---
+
+## Using `tcxx` as a Dependency
+
+When `tcxx` is pulled into another project as a dependency, run the bootstrap
+script from the `tcxx` checkout before configuring the consuming project:
+
+```bash
+./bootstrap.sh
+```
+
+The bootstrap script updates apt metadata and installs `libexpected-dev`.
 
 ---
 
@@ -114,10 +133,15 @@ reports/valgrind-report.html
 ```text
 .
 ├── include/                  # Public headers
-├── tests/                    # Unit tests
+├── test/                     # Unit tests
+├── examples/                 # Example code
+├── tools/                    # Report generation helpers
 ├── reports/                  # Generated reports
 ├── ubuntu-resolute-gcc-15/   # Docker environment
 ├── docs/                     # Documentation
+├── bootstrap.sh              # System dependency bootstrap
+├── build.sh                  # Debug/release build helper
+├── local-ci.sh               # Local CI workflow
 └── CMakeLists.txt
 ```
 
