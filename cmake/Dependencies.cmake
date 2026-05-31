@@ -32,7 +32,7 @@ find_program(GCOV_EXECUTABLE gcov)
 
 if(NOT GCOV_EXECUTABLE)
     message(FATAL_ERROR
-        "lcov/genhtml not found.\n"
+        "gcov not found.\n"
         "On Ubuntu, install it with:\n"
         "  sudo apt install gcov"
     )
