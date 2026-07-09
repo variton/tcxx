@@ -3,7 +3,6 @@
 
 #include <doctest/doctest.h>
 
-#include <chrono>
 #include <thread>
 #include <xclock.h>
 
