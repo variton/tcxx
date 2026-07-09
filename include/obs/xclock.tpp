@@ -38,6 +38,27 @@ void Xclock<CLOCK, PRECISION>::measure() noexcept {
   time_elapsed_=std::to_string(time_)+" s";
 }
 
+template<>
+void Xclock<std::chrono::high_resolution_clock,std::chrono::nanoseconds>::measure() noexcept{
+    auto time_=std::chrono::duration_cast<std::chrono::nanoseconds>(end_-begin_).count();
+    time_elapsed_=std::to_string(time_)+" ns";
+}
+
+template<>
+void Xclock<std::chrono::high_resolution_clock,std::chrono::microseconds>::measure() noexcept{
+    auto time_=std::chrono::duration_cast<std::chrono::microseconds>(end_-begin_).count();
+    time_elapsed_=std::to_string(time_)+" µs";
+}
+
+template<>
+void Xclock<std::chrono::high_resolution_clock,std::chrono::milliseconds>::measure() noexcept{
+    auto time_=std::chrono::duration_cast<std::chrono::milliseconds>(end_-begin_).count();
+    time_elapsed_=std::to_string(time_)+" ms";
+}
+
 using s_clock = Xclock<std::chrono::system_clock,std::chrono::seconds>;
+using milli_c=Xclock<std::chrono::high_resolution_clock,std::chrono::milliseconds>;
+using micro_c=Xclock<std::chrono::high_resolution_clock,std::chrono::microseconds>;
+using nano_c=Xclock<std::chrono::high_resolution_clock,std::chrono::nanoseconds>;
 
 }
