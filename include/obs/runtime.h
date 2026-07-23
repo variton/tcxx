@@ -13,7 +13,7 @@ namespace obs{
                                                                         \
     int main(int argc, char** argv) {                                   \
         if (argc == 1) {                                                \
-            std::println("missing argument");                           \
+            fmt::println("missing argument");                           \
             return EXIT_FAILURE;                                        \
         }                                                               \
                                                                         \
