@@ -197,3 +197,33 @@ add_test(NAME test_obs_runtime COMMAND $<TARGET_FILE:test_obs_runtime> runtime_a
 set_tests_properties(test_obs_runtime PROPERTIES
   ENVIRONMENT "RC=${TRC}"
 )
+
+#========================== example obs namespace tests ========================== 
+
+add_executable(test_obs_nc_runtime
+    test_obs_nc_runtime.cpp
+)
+
+target_include_directories(test_obs_nc_runtime PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/core>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/err>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/topology>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/obs>
+  $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(test_obs_nc_runtime PRIVATE fmt::fmt)
+
+target_link_options(test_obs_nc_runtime PRIVATE
+                    $<$<CONFIG:Debug>:--coverage>)
+
+target_compile_options(test_obs_nc_runtime PRIVATE 
+                       -Wall -Wextra -pedantic
+                       $<$<CONFIG:Debug>:--coverage -Og -g>
+                       $<$<CONFIG:Release>:-O3 -DNDEBUG>)
+
+add_test(NAME test_obs_nc_runtime COMMAND $<TARGET_FILE:test_obs_nc_runtime> nano_arg)
+
+set_tests_properties(test_obs_nc_runtime PROPERTIES
+  ENVIRONMENT "RC=${TRC}"
+)
