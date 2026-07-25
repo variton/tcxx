@@ -132,7 +132,7 @@ target_compile_options(test_obs_mc_runtime PRIVATE
                        $<$<CONFIG:Debug>:--coverage -Og -g>
                        $<$<CONFIG:Release>:-O3 -DNDEBUG>)
 
-add_test(NAME test_obs_mc_runtime COMMAND $<TARGET_FILE:test_obs_mc_runtime> decoy)
+add_test(NAME test_obs_mc_runtime COMMAND $<TARGET_FILE:test_obs_mc_runtime> milli_arg)
 
 set_tests_properties(test_obs_mc_runtime PROPERTIES
   ENVIRONMENT "RC=${TRC}"
