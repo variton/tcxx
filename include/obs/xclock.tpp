@@ -4,7 +4,8 @@ namespace obs {
 template <typename CLOCK, typename PRECISION>
 Xclock<CLOCK, PRECISION>::Xclock() noexcept
     : started_(false),
-      time_elapsed_("0 s") {}
+      str_time_elapsed_("0 s"),
+      time_elapsed_{} {}
 
 template <typename CLOCK, typename PRECISION>
 Xclock<CLOCK, PRECISION>::~Xclock() = default;
@@ -15,7 +16,12 @@ void Xclock<CLOCK, PRECISION>::operator()() noexcept {
 }
 
 template <typename CLOCK, typename PRECISION>
-std::string_view Xclock<CLOCK, PRECISION>::elapsed() const {
+std::string_view Xclock<CLOCK, PRECISION>::elapsed_to_str() const noexcept{
+    return str_time_elapsed_;
+}
+
+template<typename CLOCK, typename PRECISION>
+typename PRECISION::rep Xclock<CLOCK, PRECISION>::elapsed() const noexcept{
     return time_elapsed_;
 }
 
@@ -34,26 +40,26 @@ void Xclock<CLOCK, PRECISION>::stop() noexcept {
 
 template <typename CLOCK, typename PRECISION>
 void Xclock<CLOCK, PRECISION>::measure() noexcept {
-  auto time_=std::chrono::duration_cast<PRECISION>(end_-begin_).count();
-  time_elapsed_=std::to_string(time_)+" s";
+  time_elapsed_=std::chrono::duration_cast<PRECISION>(end_-begin_).count();
+  str_time_elapsed_=std::to_string(time_elapsed_)+" s";
 }
 
 template<>
 void Xclock<std::chrono::high_resolution_clock,std::chrono::nanoseconds>::measure() noexcept{
-    auto time_=std::chrono::duration_cast<std::chrono::nanoseconds>(end_-begin_).count();
-    time_elapsed_=std::to_string(time_)+" ns";
+    time_elapsed_=std::chrono::duration_cast<std::chrono::nanoseconds>(end_-begin_).count();
+    str_time_elapsed_=std::to_string(time_elapsed_)+" ns";
 }
 
 template<>
 void Xclock<std::chrono::high_resolution_clock,std::chrono::microseconds>::measure() noexcept{
-    auto time_=std::chrono::duration_cast<std::chrono::microseconds>(end_-begin_).count();
-    time_elapsed_=std::to_string(time_)+" µs";
+    time_elapsed_=std::chrono::duration_cast<std::chrono::microseconds>(end_-begin_).count();
+    str_time_elapsed_=std::to_string(time_elapsed_)+" µs";
 }
 
 template<>
 void Xclock<std::chrono::high_resolution_clock,std::chrono::milliseconds>::measure() noexcept{
-    auto time_=std::chrono::duration_cast<std::chrono::milliseconds>(end_-begin_).count();
-    time_elapsed_=std::to_string(time_)+" ms";
+    time_elapsed_=std::chrono::duration_cast<std::chrono::milliseconds>(end_-begin_).count();
+    str_time_elapsed_=std::to_string(time_elapsed_)+" ms";
 }
 
 using s_clock = Xclock<std::chrono::system_clock,std::chrono::seconds>;
