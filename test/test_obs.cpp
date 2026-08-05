@@ -15,6 +15,13 @@ TEST_CASE("Xclock elasped_to_str init [seconds] OK") {
   CHECK(clock.elapsed_to_str() == "0 s");
 }
 
+TEST_CASE("Xclock elasped_to_str init [milli seconds] OK") {
+  obs::milli_c clock;
+  clock();
+  clock();
+  CHECK(clock.elapsed_to_str() == "0 ms");
+}
+
 TEST_CASE("Xclock elasped [milliseconds] OK") {
   obs::milli_c clock;
   clock();
