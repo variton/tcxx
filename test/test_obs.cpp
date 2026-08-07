@@ -3,10 +3,10 @@
 
 #include <doctest/doctest.h>
 
-#include <thread>
-#include <xclock.h>
 #include <print>
 #include <string>
+#include <thread>
+#include <xclock.h>
 
 using namespace std::chrono_literals;
 
@@ -19,11 +19,10 @@ TEST_CASE("Xclock elasped_to_str init [milli seconds] OK") {
   obs::milli_c clock;
   clock();
   clock();
-  if(clock.elapsed() == 1) {
+  if (clock.elapsed() == 1) {
     CHECK(clock.elapsed_to_str() == "1 ms");
-  }
-  else{
-  CHECK(clock.elapsed_to_str() == "0 ms");
+  } else {
+    CHECK(clock.elapsed_to_str() == "0 ms");
   }
 }
 
@@ -32,7 +31,7 @@ TEST_CASE("Xclock elasped [milliseconds] OK") {
   clock();
   std::this_thread::sleep_for(10ms);
   clock();
-  CHECK(clock.elapsed() >= 10 );
+  CHECK(clock.elapsed() >= 10);
 }
 
 TEST_CASE("Xclock elasped init [milliseconds] OK") {
