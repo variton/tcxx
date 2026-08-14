@@ -12,7 +12,7 @@ MICRO_CLOCK_RUNTIME_MAIN {
   clock();
   clock();
   const auto time = clock.elapsed();
-  fmt::println("{} ms", time);
+  fmt::println("{} us", time);
   doctest::Context context;
   context.applyCommandLine(argc, argv);
   return context.run();
