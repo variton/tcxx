@@ -59,6 +59,17 @@ auto unexpected(ErrorType error, std::string msg) {
   return tl::unexpected(ErrorInfo<ErrorType>{error, msg});
 }
 
+template <typename TargetError, typename T, typename SourceError>
+auto propagate(const tl::expected<T, ErrorInfo<SourceError>> &result,
+               TargetError target_error) {
+  return unexpected(target_error, result.error().message);
+}
+
+template <typename T, typename SourceError>
+auto propagate(const tl::expected<T, ErrorInfo<SourceError>> &result) {
+  return unexpected(result.error().type, result.error().message);
+}
+
 } // namespace err
 
 #endif
