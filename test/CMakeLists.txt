@@ -53,6 +53,35 @@ set_tests_properties(test_err PROPERTIES
   ENVIRONMENT "RC=${TRC}"
 )
 
+#========================== test_err_trait =============== ============= 
+
+add_executable(test_error_trait
+    test_error_trait.cpp
+)
+
+target_include_directories(test_error_trait PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/core>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/err>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/topology>
+  $<BUILD_INTERFACE:${CMAKE_INCLUDE_PATH}/obs>
+  $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(test_error_trait PRIVATE fmt::fmt)
+
+target_link_options(test_error_trait PRIVATE
+                    $<$<CONFIG:Debug>:--coverage>)
+
+target_compile_options(test_error_trait PRIVATE 
+                       -Wall -Wextra -pedantic
+                       $<$<CONFIG:Debug>:--coverage -Og -g>
+                       $<$<CONFIG:Release>:-O3 -DNDEBUG>)
+
+add_test(NAME test_error_trait COMMAND $<TARGET_FILE:test_error_trait>)
+
+set_tests_properties(test_error_trait PROPERTIES
+  ENVIRONMENT "RC=${TRC}"
+)
 #========================== example math namespace tests ========================== 
 
 add_executable(test_example_math
