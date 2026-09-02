@@ -9,6 +9,7 @@ namespace err {
 /** Default non-copyable, non-movable base type. */
 template <typename T>
 using Default = core::NCNM<T>;
+template <typename T> using Default = core::NCNM<T>;
 
 /**
  * @brief Provides error-type information.
