@@ -64,7 +64,7 @@ namespace obs {
       return EXIT_FAILURE;                                                     \
     }                                                                          \
                                                                                \
-    obs::micro_c clock;                                                        \
+    obs::nano_c clock;                                                        \
     return clock_runtime_main(argc, argv, clock);                              \
   }                                                                            \
                                                                                \
