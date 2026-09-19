@@ -27,11 +27,13 @@ namespace obs {
     return clock_runtime_main(argc, argv, clock);                              \
   }                                                                            \
                                                                                \
-  static int clock_runtime_main(int argc, char **argv,                         \
+  static int clock_runtime_main([[maybe_unused]] int argc,                     \
+                                [[maybe_unused]] char **argv,                  \
                                 [[maybe_unused]] obs::s_clock &clock)
 
 /**
- * @brief Defines the application entry point with millisecond-resolution timing.
+ * @brief Defines the application entry point with millisecond-resolution
+ * timing.
  */
 #define MILLI_CLOCK_RUNTIME_MAIN                                               \
   static int clock_runtime_main(int argc, char **argv, obs::milli_c &clock);   \
@@ -46,11 +48,13 @@ namespace obs {
     return clock_runtime_main(argc, argv, clock);                              \
   }                                                                            \
                                                                                \
-  static int clock_runtime_main(int argc, char **argv,                         \
+  static int clock_runtime_main([[maybe_unused]] int argc,                     \
+                                [[maybe_unused]] char **argv,                  \
                                 [[maybe_unused]] obs::milli_c &clock)
 
 /**
- * @brief Defines the application entry point with microsecond-resolution timing.
+ * @brief Defines the application entry point with microsecond-resolution
+ * timing.
  */
 #define MICRO_CLOCK_RUNTIME_MAIN                                               \
   static int clock_runtime_main(int argc, char **argv, obs::micro_c &clock);   \
@@ -65,14 +69,15 @@ namespace obs {
     return clock_runtime_main(argc, argv, clock);                              \
   }                                                                            \
                                                                                \
-  static int clock_runtime_main(int argc, char **argv,                         \
+  static int clock_runtime_main([[maybe_unused]] int argc,                     \
+                                [[maybe_unused]] char **argv,                  \
                                 [[maybe_unused]] obs::micro_c &clock)
 
 /**
  * @brief Defines the application entry point with nanosecond-resolution timing.
  */
 #define NANO_CLOCK_RUNTIME_MAIN                                                \
-  static int clock_runtime_main(int argc, char **argv, obs::nano_c &clock);   \
+  static int clock_runtime_main(int argc, char **argv, obs::nano_c &clock);    \
                                                                                \
   int main(int argc, char **argv) {                                            \
     if (argc == 1) {                                                           \
@@ -84,7 +89,8 @@ namespace obs {
     return clock_runtime_main(argc, argv, clock);                              \
   }                                                                            \
                                                                                \
-  static int clock_runtime_main(int argc, char **argv,                         \
+  static int clock_runtime_main([[maybe_unused]] int argc,                     \
+                                [[maybe_unused]] char **argv,                  \
                                 [[maybe_unused]] obs::nano_c &clock)
 
 } // namespace obs
